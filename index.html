@@ -1,0 +1,74 @@
+<html>
+<head>
+	<title>Scrabble</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap4.css">
+  <link href="hover.css" rel="stylesheet" media="all">
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+        $("#restart").click(function() {
+            location.reload();
+
+        });
+            
+    });
+
+    function getWords() {
+        var str = document.getElementById("letters").toLowerCase().split("")
+        var ajax = new XMLHTTPRequest();
+        ajax.onreadystatechange = function() {
+          if(ajax.readyState == 4 && ajax.status==200) {
+            document.getElementById("output").innerHTML=ajax.responseText;
+          }
+        };
+
+        ajax.open("GET", "randomPHP.php?numL="+str, true);
+        ajax.send();
+    }
+
+	</script>
+
+</head>
+<body style="background-color:gray">
+	
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="../index.html">Rehan's Labs</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="../Lab0/index.html">Lab 0</a></li>
+        <li><a href="../Lab1/index.html">Lab 1</a></li>
+        <li><a href="../Lab2/index.html">Lab 2</a></li>
+        <li><a href="../Lab3/index.html">Lab 3</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<br>
+  <h1 style="font-style:italic; text-align:center">Let's play Scrabble!</h1>
+
+  <div class="inputDiv">
+    First Letter:<br>
+    <input type="text" name="first"  id="letters">
+  </div>
+
+<br><br>
+  <div style="text-align:center">
+    <button class="hvr-rectangle-out" style="width:200px; height:50px" id="restart">Restart</button>
+  </div>
+<br>
+  <div style="text-align:center">
+    <button class="hvr-rectangle-out" style="width:200px; height:50px" onclick="getWords">Submit</button>
+  </div>
+
+<br>
+
+<div id="output"></div>
+
+
+</body>
+</html>
