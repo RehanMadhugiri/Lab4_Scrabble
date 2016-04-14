@@ -2,7 +2,7 @@
 	/*$numLetters = $_REQUEST["numL"]; 
 	$matches = array();*/
 
-	$filename = "wordsEn.txt"
+	$filename = "wordsEn.txt";
 /*
 	$pattern = "{".$numLetters-1."}";
 
@@ -17,10 +17,20 @@
 		fclose($file);
 	}*/
 
-	$fp = @fopen($filename, 'r'); 
+	$file = fopen($filename, "r");
+		$members = array();
 
-	if ($fp) {
-   		$array = explode("\n", fread($fp, filesize($filename)));
-	}
+		while (!feof($file)) {
+   			$members[] = fgets($file);
+		}
+
+		fclose($file);
+
+		var_dump($members);
+
+
+
+///http://stackoverflow.com/questions/6159683/read-each-line-of-txt-file-to-new-array-element
+
 
 ?>
