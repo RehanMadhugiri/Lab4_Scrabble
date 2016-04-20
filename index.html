@@ -16,15 +16,16 @@
     });
 
     function getWords() {
-        var str = document.getElementById("letters").toLowerCase().split("")
-        var ajax = new XMLHTTPRequest();
+        var str = document.getElementById("str").value;
+        var ajax = new XMLHttpRequest();
         ajax.onreadystatechange = function() {
           if(ajax.readyState == 4 && ajax.status==200) {
+            console.log(str);
             document.getElementById("output").innerHTML=ajax.responseText;
           }
         };
 
-        ajax.open("GET", "randomPHP.php?numL="+str, true);
+        ajax.open("GET", "randomPHP.php?str="+str, true);
         ajax.send();
     }
 
@@ -53,7 +54,7 @@
 
   <div class="inputDiv">
     First Letter:<br>
-    <input type="text" name="first"  id="letters">
+    <input type="text" name="str"  id="str">
   </div>
 
 <br><br>
@@ -62,12 +63,12 @@
   </div>
 <br>
   <div style="text-align:center">
-    <button class="hvr-rectangle-out" style="width:200px; height:50px" onclick="getWords">Submit</button>
+    <button class="hvr-rectangle-out" style="width:200px; height:50px" onclick="getWords()">Submit</button>
   </div>
 
 <br>
 
-<div id="output"></div>
+<div id="output" style="color:white; text-align:center">REHAN</div>
 
 
 </body>
